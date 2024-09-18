@@ -1,16 +1,24 @@
-import { Button } from "@/components/ui/button"
-const AuthButton = () => {
-  return (
-    <div className="flex gap-3 flex-1 md:flex-row flex-col relative z-50">
-        <Button className="w-full" variant={"outline"} >
-            Sign Up
-        </Button>
-        <Button className="w-full" >
-            Login
-        </Button>
+"use client";
+import { Button } from "@/components/ui/button";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { useState } from "react";
 
-    </div>
-  )
-}
+const AuthButtons = () => {
+	const [isLoading, setIsLoading] = useState(false);
 
-export default AuthButton
+	return (
+		<div className='flex gap-3 flex-1 md:flex-row flex-col relative z-50'>
+			<RegisterLink className='flex-1' onClick={() => setIsLoading(true)}>
+				<Button className='w-full' variant={"outline"} disabled={isLoading}>
+					Sign up
+				</Button>
+			</RegisterLink>
+			<LoginLink className='flex-1' onClick={() => setIsLoading(true)}>
+				<Button className='w-full' disabled={isLoading}>
+					Login
+				</Button>
+			</LoginLink>
+		</div>
+	);
+};
+export default AuthButtons;
